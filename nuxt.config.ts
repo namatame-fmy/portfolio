@@ -8,10 +8,15 @@ export default defineNuxtConfig({
     'nuxt-microcms-module',
     '@nuxtjs/color-mode',
   ],
+  runtimeConfig: {
+    microcmsApiKey: process.env.MICROCMS_API_KEY, // サーバー側のみで使用
+    public: {
+      microcmsServiceDomain: process.env.NUXT_PUBLIC_MICROCMS_SERVICE_DOMAIN, // クライアント側でも使用
+    },
+  },
   microCMS: {
-    serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
+    serviceDomain: process.env.NUXT_PUBLIC_MICROCMS_SERVICE_DOMAIN, // ここを修正
     apiKey: process.env.MICROCMS_API_KEY,
-    target: 'all',
   },
   googleFonts: {
     families: {
