@@ -4,13 +4,24 @@ import type { Blog } from '~/types/blog'
 
 const target = ref(null)
 const { tilt, roll } = useParallax(target)
-const { data: blogs } = await useMicroCMSGetList<Blog>({
-  endpoint: 'blogs',
-  queries: {
-    limit: 3,
-    orders: '-publishedAt',
-  },
-})
+const { data: blogs } = await useAsyncData(
+  'blogs',
+  () =>
+    useMicroCMSGetList<Blog>({
+      endpoint: 'blogs',
+      queries: {
+        limit: 3,
+        orders: '-publishedAt',
+      },
+    }),
+  {
+    server: true,
+    lazy: false,
+    transform: (data) => {
+      return data.data.value
+    },
+  }
+)
 
 // アクセシビリティ対応
 const prefersReducedMotion = usePreferredReducedMotion()
