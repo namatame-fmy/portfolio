@@ -35,7 +35,7 @@ const motionScale = computed(() => (isLargeScreen.value ? 1 : 0.5))
 <template>
   <section
     ref="target"
-    class="bg-[#171616] pt-40 pb-32 overflow-hidden md:pt-52 md:pb-40 dark:bg-[#fff]"
+    class="bg-[#fff] pt-40 pb-32 overflow-hidden md:pt-52 md:pb-40 dark:bg-[#171616]"
   >
     <div class="flex items-center justify-center relative">
       <div class="container block mx-auto md:flex md:flex-row md:items-center">
@@ -73,7 +73,7 @@ const motionScale = computed(() => (isLargeScreen.value ? 1 : 0.5))
     <div class="flex justify-between items-center">
       <h2 class="text-4xl font-en mb-8">Blog</h2>
       <NuxtLink
-        class="text-rose-600 font-bold cursor-pointer hover:opacity-70 duration-300"
+        class="text-[#e11d48] font-bold cursor-pointer hover:opacity-70 duration-300"
         to="/blog"
         >View All</NuxtLink
       >

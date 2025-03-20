@@ -24,10 +24,10 @@ router.afterEach(() => {
 </script>
 <template>
   <header
-    class="w-full h-24 flex items-center justify-between gap-14 p-6 absolute top-0 z-10 dark:text-black"
+    class="w-full h-24 flex items-center justify-between gap-14 p-6 absolute top-0 z-10 dark:text-white"
   >
     <a class="flex items-center gap-2 cursor-pointer opacity-80 duration-300" href="/">
-      <template v-if="colorMode.value === 'dark'">
+      <template v-if="colorMode.value === 'light'">
         <img src="/public/lightLogo.svg" width="30" height="30" alt="logo" />
       </template>
       <template v-else>
@@ -66,16 +66,16 @@ router.afterEach(() => {
       aria-label="メニュー"
     >
       <span
-        class="block w-6 h-0.5 bg-white mb-1.5 transition-all duration-300 dark:bg-[#333]"
-        :class="isOpen ? 'rotate-45 translate-y-2 dark:bg-[#fff]' : ''"
+        class="block w-6 h-0.5 bg-[#333] mb-1.5 transition-all duration-300 dark:bg-[#fff]"
+        :class="isOpen ? 'rotate-45 translate-y-2 bg-[#fff]' : ''"
       ></span>
       <span
-        class="block w-6 h-0.5 bg-white mb-1.5 transition-all duration-300 dark:bg-[#333]"
+        class="block w-6 h-0.5 bg-[#333] mb-1.5 transition-all duration-300 dark:bg-[#fff]"
         :class="isOpen ? 'opacity-0' : ''"
       ></span>
       <span
-        class="block w-6 h-0.5 bg-white mb-1.5 transition-all duration-300 dark:bg-[#333]"
-        :class="isOpen ? '-rotate-45 -translate-y-2 dark:bg-[#fff]' : ''"
+        class="block w-6 h-0.5 bg-[#333] mb-1.5 transition-all duration-300 dark:bg-[#fff]"
+        :class="isOpen ? '-rotate-45 -translate-y-2 bg-[#fff]' : ''"
       ></span>
     </button>
 
@@ -86,7 +86,7 @@ router.afterEach(() => {
       <nav class="flex flex-col items-start space-y-10 text-3xl w-full">
         <NuxtLink
           to="/"
-          class="px-4 py-2 cursor-pointer hover:opacity-70 duration-300 dark:text-[#fff]"
+          class="px-4 py-2 cursor-pointer hover:opacity-70 duration-300 text-[#fff]"
           :class="$route.path === '/' && 'opacity-55'"
           @click="closeMenu"
         >
@@ -94,7 +94,7 @@ router.afterEach(() => {
         </NuxtLink>
         <NuxtLink
           to="/about"
-          class="px-4 py-2 cursor-pointer hover:opacity-70 duration-300 dark:text-[#fff]"
+          class="px-4 py-2 cursor-pointer hover:opacity-70 duration-300 text-[#fff]"
           :class="$route.path === '/about' && 'opacity-55'"
           @click="closeMenu"
         >
@@ -102,7 +102,7 @@ router.afterEach(() => {
         </NuxtLink>
         <NuxtLink
           to="/blog"
-          class="px-4 py-2 cursor-pointer hover:opacity-70 duration-300 dark:text-[#fff]"
+          class="px-4 py-2 cursor-pointer hover:opacity-70 duration-300 text-[#fff]"
           :class="$route.path.startsWith('/blog') && 'opacity-55'"
           @click="closeMenu"
         >

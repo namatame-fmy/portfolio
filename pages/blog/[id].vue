@@ -3,10 +3,22 @@ import type { Blog } from '~/types/blog'
 
 const route = useRoute()
 const id = route.params.id as string
-const { data: blog } = await useMicroCMSGetListDetail<Blog>({
-  endpoint: 'blogs',
-  contentId: id,
-})
+
+const { data: blog } = await useAsyncData(
+  'blogs',
+  () =>
+    useMicroCMSGetListDetail<Blog>({
+      endpoint: 'blogs',
+      contentId: id,
+    }),
+  {
+    server: true,
+    lazy: false,
+    transform: (data) => {
+      return data.data.value
+    },
+  }
+)
 </script>
 
 <template>

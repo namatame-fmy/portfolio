@@ -1,9 +1,24 @@
 <script lang="ts" setup>
 import type { Blog } from '~/types/blog'
 
-const { data: blogs } = await useMicroCMSGetList<Blog>({
-  endpoint: 'blogs',
-})
+const { data: blogs } = await useAsyncData(
+  'blogs',
+  () =>
+    useMicroCMSGetList<Blog>({
+      endpoint: 'blogs',
+      queries: {
+        limit: 3,
+        orders: '-publishedAt',
+      },
+    }),
+  {
+    server: true,
+    lazy: false,
+    transform: (data) => {
+      return data.data.value
+    },
+  }
+)
 </script>
 
 <template>
