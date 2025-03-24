@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Blog } from '~/types/blog'
 
-const { data: blogs } = await useAsyncData(
+const { data: blogs, refresh } = await useAsyncData(
   'blogs',
   () =>
     useMicroCMSGetList<Blog>({
@@ -19,6 +19,12 @@ const { data: blogs } = await useAsyncData(
     },
   }
 )
+
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    refresh()
+  }
+})
 </script>
 
 <template>
