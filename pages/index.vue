@@ -1,27 +1,27 @@
 <script lang="ts" setup>
 import { useParallax, usePreferredReducedMotion, useMediaQuery } from '@vueuse/core'
-import type { Blog } from '~/types/blog'
 
 const target = ref(null)
 const { tilt, roll } = useParallax(target)
-const { data: blogs } = await useAsyncData(
+const { data: blogs, refresh } = await useAsyncData(
   'blogs',
   () =>
-    useMicroCMSGetList<Blog>({
-      endpoint: 'blogs',
-      queries: {
+    $fetch('/api/blogs', {
+      params: {
         limit: 3,
-        orders: '-publishedAt',
       },
     }),
   {
+    lazy: true,
     server: true,
-    lazy: false,
-    transform: (data) => {
-      return data.data.value
-    },
   }
 )
+
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    refresh()
+  }
+})
 
 // アクセシビリティ対応
 const prefersReducedMotion = usePreferredReducedMotion()

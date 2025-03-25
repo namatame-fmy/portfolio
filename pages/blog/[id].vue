@@ -1,24 +1,21 @@
 <script lang="ts" setup>
-import type { Blog } from '~/types/blog'
-
 const route = useRoute()
-const id = route.params.id as string
+const blogId = route.params.id as string
 
-const { data: blog } = await useAsyncData(
-  'blogs',
-  () =>
-    useMicroCMSGetListDetail<Blog>({
-      endpoint: 'blogs',
-      contentId: id,
-    }),
+const { data: blog, refresh } = await useAsyncData(
+  `blog-${blogId}`,
+  () => $fetch(`/api/blog/${blogId}`),
   {
+    lazy: true,
     server: true,
-    lazy: false,
-    transform: (data) => {
-      return data.data.value
-    },
   }
 )
+
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    refresh()
+  }
+})
 </script>
 
 <template>
@@ -45,8 +42,5 @@ const { data: blog } = await useAsyncData(
         <div v-html="blog.content"></div>
       </div>
     </div>
-  </template>
-  <template v-else>
-    <p>記事がありません。</p>
   </template>
 </template>

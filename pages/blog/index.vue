@@ -1,24 +1,8 @@
 <script lang="ts" setup>
-import type { Blog } from '~/types/blog'
-
-const { data: blogs, refresh } = await useAsyncData(
-  'blogs',
-  () =>
-    useMicroCMSGetList<Blog>({
-      endpoint: 'blogs',
-      queries: {
-        limit: 3,
-        orders: '-publishedAt',
-      },
-    }),
-  {
-    server: true,
-    lazy: false,
-    transform: (data) => {
-      return data.data.value
-    },
-  }
-)
+const { data: blogs, refresh } = await useAsyncData('blogs', () => $fetch('/api/blogs'), {
+  lazy: true,
+  server: true,
+})
 
 onMounted(() => {
   if (typeof window !== 'undefined') {

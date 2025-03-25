@@ -8,6 +8,9 @@ export default defineNuxtConfig({
     'nuxt-microcms-module',
     '@nuxtjs/color-mode',
   ],
+  import: {
+    autoImport: true,
+  },
   runtimeConfig: {
     microcmsApiKey: process.env.MICROCMS_API_KEY, // サーバー側のみで使用
     public: {
