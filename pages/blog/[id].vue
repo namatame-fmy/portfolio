@@ -16,6 +16,26 @@ onMounted(() => {
     refresh()
   }
 })
+
+// 動的にコンテンツにTailwindスタイルを追加する関数
+const applyContentStyles = (htmlContent: string) => {
+  // デフォルトのコンテンツスタイルを定義
+  const defaultStyles = [
+    'prose', // prose クラスで基本的なタイポグラフィスタイルを適用
+    'prose-h2:text-2xl',
+    'prose-h3:text-xl',
+    'prose-p:my-4',
+    'prose-a:text-blue-600',
+    'prose-a:underline',
+    'prose-img:rounded-lg',
+    'prose-code:bg-gray-100',
+    'prose-code:p-1',
+    'prose-code:rounded',
+  ].join(' ')
+
+  // コンテンツを div でラップし、スタイルを適用
+  return `<div class="${defaultStyles}">${htmlContent}</div>`
+}
 </script>
 
 <template>
@@ -31,15 +51,16 @@ onMounted(() => {
         </time>
       </div>
       <img
-        class="mt-6"
+        class="mt-6 rounded-lg"
         :src="blog.eyecatch?.url"
         :width="blog.eyecatch?.width"
         :height="blog.eyecatch?.height"
         alt="ブログ画像"
       />
       <h1 class="text-2xl md:text-4xl my-6">{{ blog.title }}</h1>
-      <div class="">
-        <div v-html="blog.content"></div>
+      <div>
+        <!-- applyContentStyles 関数で動的にスタイルを適用 -->
+        <div v-html="applyContentStyles(blog.content)"></div>
       </div>
     </div>
   </template>
