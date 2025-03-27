@@ -18,7 +18,7 @@ export default defineNuxtConfig({
     },
   },
   microCMS: {
-    serviceDomain: process.env.NUXT_PUBLIC_MICROCMS_SERVICE_DOMAIN, // ここを修正
+    serviceDomain: process.env.NUXT_PUBLIC_MICROCMS_SERVICE_DOMAIN,
     apiKey: process.env.MICROCMS_API_KEY,
   },
   googleFonts: {
@@ -38,5 +38,38 @@ export default defineNuxtConfig({
   colorMode: {
     preference: 'dark',
     classSuffix: '',
+  },
+  app: {
+    head: {
+      title: 'Namatame Fumiya | Front-End Engineer',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          name: 'description',
+          content:
+            'Web制作・ディレクション経験を活かし、デザインと技術のバランスを大切にした開発を行います。学んだことはブログで共有しています。',
+        },
+        { property: 'og:title', content: 'Namatame Fumiya | Front-End Engineer' },
+        {
+          property: 'og:description',
+          content:
+            'Web制作・ディレクション経験を活かし、デザインと技術のバランスを大切にした開発を行います。学んだことはブログで共有しています。',
+        },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: 'https://namafumi.com/' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: 'Namatame Fumiya | Front-End Engineer' },
+        {
+          name: 'twitter:description',
+          content:
+            'Web制作・ディレクション経験を活かし、デザインと技術のバランスを大切にした開発を行います。学んだことはブログで共有しています。',
+        },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+      ],
+    },
   },
 })
