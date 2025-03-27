@@ -30,7 +30,7 @@ const applyContentStyles = (htmlContent: string) => {
     'dark:prose-a:text-blue-400', // ダークモード時のリンク色
     'prose-a:underline',
     'prose-img:rounded-lg',
-    'prose-code:bg-gray-100',
+    // 'prose-code:bg-gray-100',
     'dark:prose-code:bg-gray-800', // ダークモード時のコードブロック背景
     'prose-code:p-1',
     'prose-code:rounded',
