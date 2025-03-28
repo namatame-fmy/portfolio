@@ -43,7 +43,7 @@ const applyContentStyles = (htmlContent: string) => {
 
 <template>
   <template v-if="blog">
-    <div class="mt-40 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div class="w-full md:w-3/5 mt-40 dark:text-gray-100 transition-colors duration-300">
       <div
         class="items-center gap-10 mt-5 text-sm opacity-55 dark:opacity-70"
         :class="!blog.category?.name ? 'block' : 'flex'"
