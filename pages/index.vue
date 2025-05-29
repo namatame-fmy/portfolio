@@ -52,7 +52,7 @@ const motionScale = computed(() => (isLargeScreen.value ? 1 : 0.5))
           </div>
           <NuxtLink
             to="/about"
-            class="inline-block bg-[#e11d48] border border-[#e11d48] text-white rounded-full py-3 px-8 mt-8 cursor-pointer hover:bg-transparent hover:text-rose-600 transition-colors duration-300"
+            class="inline-block bg-[#e11d48] border border-[#e11d48] text-white rounded-full py-3 px-8 mt-8 cursor-pointer hover:bg-transparent hover:text-[#e11d48] transition-colors duration-300"
             >もっと詳しく</NuxtLink
           >
         </div>
