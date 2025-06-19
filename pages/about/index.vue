@@ -69,7 +69,7 @@ const projects = [
     `,
     media: {
       type: 'image',
-      url: '/assets/img/project-healthcare.jpg',
+      url: '/img/project-healthcare.png',
     },
     period: '2023年11月 - 2024年12月',
     role: 'フロントエンド開発',
@@ -83,7 +83,7 @@ const projects = [
     `,
     media: {
       type: 'image',
-      url: '/assets/img/project-healthcare_design.png',
+      url: '/img/project-healthcare_design.png',
     },
     period: '2023年11月 - 2024年12月',
     role: 'デザイン',
@@ -326,19 +326,57 @@ onUnmounted(() => {
       <!-- ボディ -->
       <div class="overflow-y-auto max-h-[calc(90vh-120px)]">
         <div class="p-6">
-          <!-- プロジェクト画像/URL -->
-          <div class="mb-6">
-            <div v-if="selectedProject?.media?.type === 'image'">
+          <!-- 画像がある場合は横並び、ない場合は縦並び -->
+          <div
+            v-if="selectedProject?.media?.type === 'image'"
+            class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6"
+          >
+            <!-- 左側: 画像 -->
+            <div>
               <img
                 :src="selectedProject.media.url"
                 :alt="selectedProject.title"
-                class="w-full h-64 object-cover rounded-lg shadow-md"
+                class="w-full h-auto max-h-80 object-contain rounded-lg shadow-md bg-gray-50"
                 @error="$event.target.style.display = 'none'"
               />
             </div>
+
+            <!-- 右側: プロジェクト基本情報 -->
+            <div class="space-y-6">
+              <!-- プロジェクト情報 -->
+              <div class="grid grid-cols-1 gap-4">
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">期間</h4>
+                  <p class="text-gray-600">{{ selectedProject?.period }}</p>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">担当役割</h4>
+                  <p class="text-gray-600">{{ selectedProject?.role }}</p>
+                </div>
+              </div>
+
+              <!-- 使用技術 -->
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-3">使用技術</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    v-for="tech in selectedProject?.technologies"
+                    :key="tech"
+                    class="text-black px-3 py-1 bg-gray-100 rounded-full text-xs font-medium"
+                  >
+                    {{ tech }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- URLのみ、または画像がない場合の通常レイアウト -->
+          <div v-else class="mb-6">
+            <!-- URL情報 -->
             <div
-              v-else-if="selectedProject?.media?.type === 'url'"
-              class="bg-gray-50 rounded-lg p-6 border border-gray-200"
+              v-if="selectedProject?.media?.type === 'url'"
+              class="bg-gray-50 rounded-lg p-6 border border-gray-200 mb-6"
             >
               <div class="flex items-center justify-between mb-4">
                 <div>
@@ -366,35 +404,35 @@ onUnmounted(() => {
               </a>
               <p class="text-xs text-gray-500 mt-2">{{ selectedProject.media.url }}</p>
             </div>
+
+            <!-- プロジェクト情報 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">期間</h4>
+                <p class="text-gray-600">{{ selectedProject?.period }}</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">担当役割</h4>
+                <p class="text-gray-600">{{ selectedProject?.role }}</p>
+              </div>
+            </div>
+
+            <!-- 使用技術 -->
+            <div class="mb-6">
+              <h4 class="font-semibold text-gray-900 mb-3">使用技術</h4>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  v-for="tech in selectedProject?.technologies"
+                  :key="tech"
+                  class="text-black px-3 py-1 bg-gray-100 rounded-full text-xs font-medium"
+                >
+                  {{ tech }}
+                </span>
+              </div>
+            </div>
           </div>
 
-          <!-- プロジェクト情報 -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div>
-              <h4 class="font-semibold text-gray-900 mb-2">期間</h4>
-              <p class="text-gray-600">{{ selectedProject?.period }}</p>
-            </div>
-            <div>
-              <h4 class="font-semibold text-gray-900 mb-2">担当役割</h4>
-              <p class="text-gray-600">{{ selectedProject?.role }}</p>
-            </div>
-          </div>
-
-          <!-- 使用技術 -->
-          <div class="mb-6">
-            <h4 class="font-semibold text-gray-900 mb-3">使用技術</h4>
-            <div class="flex flex-wrap gap-2">
-              <span
-                v-for="tech in selectedProject?.technologies"
-                :key="tech"
-                class="text-black px-3 py-1 bg-gray-100 rounded-full text-xs font-medium"
-              >
-                {{ tech }}
-              </span>
-            </div>
-          </div>
-
-          <!-- 詳細説明 -->
+          <!-- 詳細説明は下に全幅で配置 -->
           <div class="mb-6">
             <h4 class="font-semibold text-gray-900 mb-3">プロジェクト詳細</h4>
             <div
