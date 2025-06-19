@@ -217,6 +217,11 @@ onUnmounted(() => {
           を活用した状態管理・API通信 を伴うヘルスケアアプリの開発経験があります。
           UI設計には、Tailwindcssを使用しました。
         </p>
+        <p class="mb-4 leading-relaxed">
+          現在は技術の幅を広げるため、<strong>React</strong> と
+          <strong>TypeScript</strong> の学習に力を入れており、
+          モダンなフロントエンド開発のスキルアップに取り組んでいます。
+        </p>
         <p class="leading-relaxed">
           新しい技術を学ぶことが好きで、キャッチアップも早いため、
           貴社のプロジェクトに貢献できるよう努めますので、ぜひご相談ください！
